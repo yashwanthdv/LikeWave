@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home page</title>
+<style>
+   body {
+    background-color: #C9DABF; /* Background color */
+    font-family: Arial, sans-serif;
+    color: #5F6F65;
+    margin: 0;
+    padding: 0;
+}
+
+a button {
+    background-color: #9CA986;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 20px;
+    display: inline-block;
+}
+
+a button:hover {
+    background-color: #808D7C;
+}
+
+div {
+    text-align: center;
+    margin-top: 30px;
+}
+
+div p {
+    font-size: 18px;
+    color: #5F6F65;
+}
+
+div img {
+    max-width: 300px; 
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius:50%;
+}
+
+div span {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #5F6F65;
+}
+
+strong {
+    color: #9CA986;
+}
+
+    </style>
+</head>
+<body>
+
+<a href="/openCreatePost"><button>Create Post</button></a>
+
+<div>
+<span th:each="post:${allposts}">
+<p><strong>Caption:</strong><span th:text="${post.caption}"></span></p>
+<p><strong>Profile</strong>
+<img th:if="${post.photoBase64}"
+		th:src="'data:image/jpeg;base64,' + ${post.photoBase64}"
+		alt="Profile photo"/>
+		</p>
+		</div>
+</body>
+</html>

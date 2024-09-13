@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Post</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #C9DABF;
+    color: #5F6F65;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+form {
+    background-color: #9CA986;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2 {
+    color: #5F6F65;
+    text-align: center;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #5F6F65;
+}
+
+textarea {
+    width: 90%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #808D7C;
+    border-radius: 5px;
+    background-color: #C9DABF;
+    color: #5F6F65;
+    font-size: 14px;
+    resize: none;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+    width: 95%;
+    padding: 5px;
+    border: 1px solid #808D7C;
+    border-radius: 5px;
+    background-color: #C9DABF;
+    color: #5F6F65;
+}
+
+button {
+    background-color: #5F6F65;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #808D7C;
+}
+
+</style>
+</head>
+<body>
+<form  action="/createPost" method="post" enctype="multipart/form-data">
+<h2>Create new Post</h2>
+	<label>Post caption</label>
+	<textarea name="caption"></textarea><br><br>
+	
+	<label>Select Photo</label>
+	<input type="file" name="photo" accept="image/*"><br><br>
+	
+ 	<button type="submit">POST</button>
+	</form>
+
+</body>
+</html>
