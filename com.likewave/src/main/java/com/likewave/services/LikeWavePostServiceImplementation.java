@@ -24,4 +24,21 @@ public class LikeWavePostServiceImplementation implements LikeWavePostService {
 	public List<LikeWavePost> fetchAllPosts() {
 		return repo.findAll();
 	}
+
+	@Override
+	public void updateLikes(LikeWavePost post) {
+		repo.save(post);
+		
+	}
+
+	@Override
+	public void updatePost(LikeWavePost post) {
+		repo.save(post);
+	}
+
+	@Override
+	public LikeWavePost getLikeWavePost(Long id) {
+		// TODO Auto-generated method stub
+		return repo.findById(id).get();
+	}
 }

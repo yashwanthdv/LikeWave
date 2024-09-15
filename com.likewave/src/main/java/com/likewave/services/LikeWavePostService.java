@@ -10,4 +10,11 @@ public interface LikeWavePostService {
 
 	List<LikeWavePost> fetchAllPosts();
 
+	void updateLikes(LikeWavePost post);
+
+	void updatePost(LikeWavePost post);
+
+	LikeWavePost getLikeWavePost(Long id);
+
+
 }

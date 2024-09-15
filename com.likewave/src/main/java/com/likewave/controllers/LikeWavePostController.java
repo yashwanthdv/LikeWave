@@ -1,6 +1,7 @@
 package com.likewave.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,4 +42,33 @@ public class LikeWavePostController {
 		return "home";
 	
 }
+	
+	@PostMapping("/likePost")
+	public String likePost(@RequestParam Long id, Model model) {
+		LikeWavePost post=service.getLikeWavePost(id);
+		post.setLikes(post.getLikes()+1);
+		service.updateLikes(post);
+		List<LikeWavePost> allPosts=service.fetchAllPosts();
+		model.addAttribute("allposts",allPosts);
+		return "home";
+	}
+	
+	@PostMapping("/addComment")
+	public String addComment(@RequestParam Long id, 
+			@RequestParam String comment, Model model) {
+		System.out.println(comment);
+		LikeWavePost post= service.getLikeWavePost(id);
+				List<String> comments = post.getComments();
+		if(comments == null) {
+			comments = new ArrayList<String>();
+		}
+		comments.add(comment);
+		post.setComments(comments);
+		service.updatePost(post);
+		
+		List<LikeWavePost> allPosts = service.fetchAllPosts();
+		model.addAttribute("allPosts", allPosts);
+		return "home";
+	}
+	
 }
