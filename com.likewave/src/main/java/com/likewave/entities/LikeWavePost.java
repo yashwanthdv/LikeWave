@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class LikeWavePost {
@@ -22,6 +23,9 @@ public class LikeWavePost {
 	private String caption;
 	private int likes;
 	private List<String> comments;
+	
+	@ManyToOne
+	private LikeWaveUser user;
 	
 	@Lob
 	@Basic(fetch=FetchType.LAZY)

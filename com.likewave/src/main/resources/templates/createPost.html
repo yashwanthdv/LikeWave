@@ -5,6 +5,11 @@
 <title>Create Post</title>
 
 <style>
+
+<!-- #7C93C3, #55679C,#1E2A5E,#E1D7B7 -->
+<!-- #FFF8E8, #F7EED3,#AAB396,#674636 -->
+<!-- #c7522a, #e5c185,#fbf2c4,#74a892,#008585 -->
+
 body {
     font-family: Arial, sans-serif;
     background-color: #C9DABF;
@@ -15,6 +20,30 @@ body {
     height: 100vh;
     margin: 0;
 }
+
+nav {
+			display:flex;
+			justify-content:space-around;
+			align-items:center;
+			height:50px;
+		    background-color: #5F6F65;
+		    padding: 10px;
+		    text-align: center;
+		    position: fixed;
+		    top: 0;
+		    width: 100%;
+		    box-shadow: 0 4px 2px -2px gray;
+		}
+		
+		nav a {
+		    color: white;
+		    text-decoration: none;
+		    margin: 0 15px;
+		    font-size: 18px;
+		}
+		
+		
+		
 
 form {
     background-color: #9CA986;
@@ -59,6 +88,18 @@ input[type="file"] {
     color: #5F6F65;
 }
 
+a button{
+ background-color: #9CA986;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 20px;
+
+}
+ 
 button {
     background-color: #5F6F65;
     color: white;
@@ -67,7 +108,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 button:hover {
@@ -78,9 +119,9 @@ button:hover {
 </head>
 <body>
  <nav>
-        <a href="/goHome">News feed</a>
-        <a href="/openCreatePost">Create post</a>
-        <a href="#">My profile</a>
+        <a href="/goHome"><button>News feed</button></a>
+        <a href="/openCreatePost"><button>Create post</button></a>
+        <a href="/openMyProfile"><button>My profile</button></a>
     </nav>
 <form  action="/createPost" method="post" enctype="multipart/form-data">
 <h2>Create new Post</h2>

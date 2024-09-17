@@ -14,7 +14,7 @@ import com.likewave.services.LikeWavePostService;
 public class NavigationController {
 	
 	@Autowired
-	LikeWavePostService PostService;
+	LikeWavePostService service;
 
 	@GetMapping("/")
 	public String index() {
@@ -33,9 +33,20 @@ public class NavigationController {
 	
 	@GetMapping("/goHome")
 	public String login(Model model)	{
-			List<LikeWavePost> allPosts = PostService.fetchAllPosts();
+			List<LikeWavePost> allPosts = service.fetchAllPosts();
 			model.addAttribute("allPosts", allPosts);
 			return "home";
 	}
+	
+	@GetMapping("/openMyProfile")
+	public String openMyProfile() {
+		return "myProfile";
+	}
+	
+	@GetMapping("/openEditProfile")
+	public String openEditProfile() {
+		return "editProfile";
+	}
+	
 	
 }

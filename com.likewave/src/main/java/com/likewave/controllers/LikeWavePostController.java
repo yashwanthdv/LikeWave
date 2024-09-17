@@ -71,4 +71,19 @@ public class LikeWavePostController {
 		return "home";
 	}
 	
+	@PostMapping("/updateProfile")
+	public String updateProfile(
+			@RequestParam String dob,
+			@RequestParam String bio,
+			@RequestParam String gender,
+			@RequestParam String city,
+			@RequestParam String college,
+			@RequestParam String linkedIn,
+			@RequestParam String gitHub,
+			@RequestParam String photo
+			) {
+	
+		return "myProfile";
+	}
+	
 }

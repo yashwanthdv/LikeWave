@@ -12,13 +12,34 @@
     padding: 0;
 }
 
+nav {
+			display:flex;
+			justify-content:space-around;
+			align-items:center;
+			height:50px;
+		    background-color: #5F6F65;
+		    padding: 10px;
+		    text-align: center;
+		    position: fixed;
+		    top: 0;
+		    width: 100%;
+		    box-shadow: 0 4px 2px -2px gray;
+		}
+		
+		nav a {
+		    color: white;
+		    text-decoration: none;
+		    margin: 0 15px;
+		    font-size: 18px;
+		}
+
 a button {
     background-color: #9CA986;
     color: #FFFFFF;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 5px;
     margin: 20px;
     display: inline-block;
@@ -61,15 +82,16 @@ strong {
 </head>
 <body>
  <nav>
-        <a href="/goHome">News feed</a>
-        <a href="/openCreatePost">Create post</a>
-        <a href="#">My profile</a>
+        <a href="#"><button>News feed</button></a>
+        <a href="/openCreatePost"><button>Create post</button></a>
+        <a href="/openMyProfile"><button>My profile</button></a>
+    
     </nav>
 
 
 <div>
 <span th:each="post:${allposts}">
-<p><strong>Caption:</strong><span th:text="${post.caption}"></span></p>
+
 <p><strong>Profile</strong>
 <img th:if="${post.photoBase64}"
 		th:src="'data:image/jpeg;base64,' + ${post.photoBase64}"
