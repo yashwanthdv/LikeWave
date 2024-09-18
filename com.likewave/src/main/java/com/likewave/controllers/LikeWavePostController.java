@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.likewave.entities.LikeWavePost;
+import com.likewave.entities.LikeWaveUser;
 import com.likewave.services.LikeWavePostService;
+import com.likewave.services.LikeWaveUserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LikeWavePostController {
@@ -20,14 +24,20 @@ public class LikeWavePostController {
 	@Autowired
 	LikeWavePostService service;
 	
+	@Autowired
+	LikeWaveUserService userService;
+	
 	@PostMapping("/createPost")
 	public String createPost(@RequestParam("caption") String caption,
 			@RequestParam("photo") MultipartFile photo,
-			Model model
+			Model model, HttpSession session
 
 			) {
 		
+		String username=(String) session.getAttribute("username");
+		LikeWaveUser user=userService.getUser(username);
 		LikeWavePost post=new LikeWavePost();
+		post.setUser(user);
 		post.setCaption(caption);
 		try {
 			post.setPhoto(photo.getBytes());
@@ -37,6 +47,16 @@ public class LikeWavePostController {
 			}
 		
 		service.createPost(post);
+				
+			List<LikeWavePost> posts = user.getPosts();
+			if(posts == null) {
+				posts = new ArrayList<LikeWavePost>();
+			}
+			posts.add(post);
+			user.setPosts(posts);
+			userService.updateUser(user);
+					
+			
 		List<LikeWavePost> allPosts=service.fetchAllPosts();
 		model.addAttribute("allposts",allPosts);
 		return "home";
@@ -49,7 +69,7 @@ public class LikeWavePostController {
 		post.setLikes(post.getLikes()+1);
 		service.updateLikes(post);
 		List<LikeWavePost> allPosts=service.fetchAllPosts();
-		model.addAttribute("allposts",allPosts);
+		model.addAttribute("allPosts",allPosts);
 		return "home";
 	}
 	
@@ -71,19 +91,6 @@ public class LikeWavePostController {
 		return "home";
 	}
 	
-	@PostMapping("/updateProfile")
-	public String updateProfile(
-			@RequestParam String dob,
-			@RequestParam String bio,
-			@RequestParam String gender,
-			@RequestParam String city,
-			@RequestParam String college,
-			@RequestParam String linkedIn,
-			@RequestParam String gitHub,
-			@RequestParam String photo
-			) {
 	
-		return "myProfile";
-	}
 	
 }

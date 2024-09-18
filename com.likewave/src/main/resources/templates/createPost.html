@@ -11,117 +11,104 @@
 <!-- #c7522a, #e5c185,#fbf2c4,#74a892,#008585 -->
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #C9DABF;
-    color: #5F6F65;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
+    background-color: #fbf2c4; /* Light cream background */
+    font-family: Arial, sans-serif;
 }
 
 nav {
-			display:flex;
-			justify-content:space-around;
-			align-items:center;
-			height:50px;
-		    background-color: #5F6F65;
-		    padding: 10px;
-		    text-align: center;
-		    position: fixed;
-		    top: 0;
-		    width: 100%;
-		    box-shadow: 0 4px 2px -2px gray;
-		}
-		
-		nav a {
-		    color: white;
-		    text-decoration: none;
-		    margin: 0 15px;
-		    font-size: 18px;
-		}
-		
-		
-		
-
-form {
-    background-color: #9CA986;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background-color: #c7522a;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    margin-left:-10px;
 }
 
-h2 {
-    color: #5F6F65;
-    text-align: center;
-    font-size: 24px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
+nav button {
+    background-color: #008585;
+    color: #fbf2c4;
+    padding: 10px 15px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
     font-weight: bold;
-    color: #5F6F65;
 }
 
-textarea {
-    width: 90%;
-    height: 80px;
+nav button:hover {
+    background-color: #e5c185;
+}
+
+/* Centering form */
+form {
+    background-color: #e5c185; /* Beige background for form */
+    padding: 40px;
+    margin: 120px auto; /* Adjust margin to push it below the navbar */
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Form elements styling */
+form h2 {
+    color: #c7522a;
+}
+
+form label {
+    display: block;
+    color: #008585;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
     padding: 10px;
-    border: 1px solid #808D7C;
-    border-radius: 5px;
-    background-color: #C9DABF;
-    color: #5F6F65;
-    font-size: 14px;
-    resize: none;
+    border: 1px solid #74a892; /* Border matching muted green */
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
-input[type="file"] {
-    margin-top: 10px;
-    width: 95%;
-    padding: 5px;
-    border: 1px solid #808D7C;
-    border-radius: 5px;
-    background-color: #C9DABF;
-    color: #5F6F65;
+form input[type="file"] {
+    border: 1px solid #74a892;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
-a button{
- background-color: #9CA986;
+form button {
+    background-color: #c7522a; /* Reddish-orange submit button */
     color: white;
-    border: none;
     padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 20px;
-
-}
- 
-button {
-    background-color: #5F6F65;
-    color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 4px;
+    font-size: 18px;
     cursor: pointer;
-    width: 100%;
-    font-size: 20px;
 }
 
-button:hover {
-    background-color: #808D7C;
+form button:hover {
+    background-color: #008585; /* Teal on hover */
 }
+
 
 </style>
 </head>
 <body>
- <nav>
+  <nav>
+ 		<button><span th:text="${session.username}"></span></button>
         <a href="/goHome"><button>News feed</button></a>
         <a href="/openCreatePost"><button>Create post</button></a>
         <a href="/openMyProfile"><button>My profile</button></a>
+    
     </nav>
 <form  action="/createPost" method="post" enctype="multipart/form-data">
 <h2>Create new Post</h2>

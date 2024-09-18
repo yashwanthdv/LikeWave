@@ -10,5 +10,11 @@ public interface LikeWaveUserService {
 
 	boolean validateUser(String username, String password);
 
+	LikeWaveUser getUser(String username);
+
+	void updateUser(LikeWaveUser user);
+
+	
+
 	
 }

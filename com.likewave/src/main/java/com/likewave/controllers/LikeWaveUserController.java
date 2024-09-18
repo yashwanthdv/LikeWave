@@ -1,5 +1,6 @@
 package com.likewave.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import com.likewave.entities.LikeWavePost;
 import com.likewave.entities.LikeWaveUser;
 import com.likewave.services.LikeWavePostService;
 import com.likewave.services.LikeWaveUserService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 
@@ -46,10 +49,14 @@ public class LikeWaveUserController {
 		@PostMapping("/login")
 		public String login(@RequestParam String username,
 				@RequestParam String password,
-				Model model) {
+				Model model,
+				HttpSession session) {
 			boolean status=service.validateUser(username,password);
 			if(status==true) {
 				List<LikeWavePost> allPosts = postService.fetchAllPosts();
+				session.setAttribute("username", username);
+				model.addAttribute("session",session);
+				
 				model.addAttribute("allPosts", allPosts);
 				
 				return "home";
@@ -58,6 +65,44 @@ public class LikeWaveUserController {
 				model.addAttribute("message","Invalid username or password..!");
 				return "index";
 			}
+		}
+		
+		@PostMapping("/updateProfile")
+		public String updateProfile(
+				@RequestParam String dob,
+				@RequestParam String bio,
+				@RequestParam String gender,
+				@RequestParam String city,
+				@RequestParam String college,
+				@RequestParam String linkedIn,
+				@RequestParam String gitHub,
+				@RequestParam MultipartFile photo
+				, HttpSession session,
+				Model model
+				) {
+			
+			String username = (String) session.getAttribute("username");
+		
+			LikeWaveUser user=service.getUser(username);
+			
+			user.setDob(dob);
+			user.setGender(gender);
+			user.setCity(city);
+			user.setBio(bio);
+			user.setCollege(college);
+			user.setLinkedIn(linkedIn);
+			user.setGitHub(gitHub);
+			try {						
+				user.setProfilePic(photo.getBytes());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			service.updateUser(user);
+			model.addAttribute("user", user);
+			
+			
+			return "myProfile";
 		}
 
 }

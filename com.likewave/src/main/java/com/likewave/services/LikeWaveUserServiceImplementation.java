@@ -38,4 +38,14 @@ public class LikeWaveUserServiceImplementation implements LikeWaveUserService{
 		}
 		return false;
 	}
+
+	@Override
+	public LikeWaveUser getUser(String username) {
+		return repo.findByUsername(username);
+	}
+
+	@Override
+	public void updateUser(LikeWaveUser user) {
+		repo.save(user);
+	}
 }

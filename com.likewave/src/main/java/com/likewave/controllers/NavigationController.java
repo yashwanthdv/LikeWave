@@ -8,13 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.likewave.entities.LikeWavePost;
+import com.likewave.entities.LikeWaveUser;
 import com.likewave.services.LikeWavePostService;
+import com.likewave.services.LikeWaveUserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class NavigationController {
 	
 	@Autowired
-	LikeWavePostService service;
+	LikeWaveUserService service;
+	
+	
+	@Autowired
+	LikeWavePostService postService;
 
 	@GetMapping("/")
 	public String index() {
@@ -32,14 +40,17 @@ public class NavigationController {
 	}
 	
 	@GetMapping("/goHome")
-	public String login(Model model)	{
-			List<LikeWavePost> allPosts = service.fetchAllPosts();
+	public String goHome(Model model)	{
+			List<LikeWavePost> allPosts = postService.fetchAllPosts();
 			model.addAttribute("allPosts", allPosts);
 			return "home";
 	}
 	
 	@GetMapping("/openMyProfile")
-	public String openMyProfile() {
+	public String openMyProfile(Model model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
+		LikeWaveUser user = service.getUser(username);
+		model.addAttribute("user", user);
 		return "myProfile";
 	}
 	
