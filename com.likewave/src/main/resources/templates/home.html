@@ -3,6 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home page</title>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <style>
 body {
     margin: 0;
@@ -30,87 +31,136 @@ nav button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
+   
 }
 
 nav button:hover {
     background-color: #e5c185;
 }
 
-div {
+
+
+.container {
+    width: 50%;
     margin: 0 auto;
-    max-width: 400px;
-    margin-top: 100px; /* Ensures space below the navbar */
+    background-color: #e5c185;
     padding: 20px;
-    background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-div p {
-    margin: 10px 0;
-}
-
-strong {
-    color: #008585;
-}
-
-img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #74a892;
-    border-radius: 4px;
+    margin-top: 85px;
+    text-align: center;
     box-sizing: border-box;
 }
 
-input[type="submit"] {
-    background-color: #c7522a;
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    height:80px;
+}
+
+.profile-pic img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #74a892; /* Muted green */
+    margin-right: 20px;
+}
+
+.username {
+    font-size: 22px;
+    color: #008585; /* Teal */
+    font-weight: bold;
+    margin-top:-25px;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.post-caption, .likes{
+text-align:left;
+margin-top:-5px;
+}
+
+.like-post{
+margin-top:-40px;
+margin-bottom:10px;
+}
+
+.like-btn{
+    background-color: #c7522a; 
     color: white;
-    padding: 8px 15px;
+    padding: 10px;
+    width: 50%;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    
+}
+
+
+ .comment-btn {
+    background-color: #c7522a; /* Reddish-orange */
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
-    background-color: #008585;
+
+
+.like-btn:hover, .comment-btn:hover {
+    background-color: #008585; /* Teal */
+}
+
+textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #74a892; /* Muted green */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: inherit;
 }
 
 .comments-section {
-    background-color: #e5c185;
-    padding: 15px;
-    border-radius: 4px;
+    margin-top: 20px;
 }
 
 .comments-section h4 {
-    margin: 0;
-    color: #c7522a;
+text-align:left;
+    color: #008585; 
+    margin-bottom: 10px;
 }
 
 .comments-section ul {
-    list-style-type: none;
+text-align:left;
+    list-style: none;
     padding: 0;
-    margin-top: 10px;
 }
 
-.comments-section ul li {
-    padding: 5px 0;
-    border-bottom: 1px solid #74a892;
+.comments-section li {
+    background-color: #e5c185; 
+    padding: 2px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    
 }
 
 hr {
+    border: none;
+    height: 2px;
+    background-color: #74a892; /* Muted green */
     margin-top: 20px;
-    height: 1.5px;
-    background-color: #e5c185;
 }
 
 
@@ -118,55 +168,60 @@ hr {
 </head>
 <body>
  <nav>
- 		<button><span th:text="${session.username}"></span></button>
-        <a href="/goHome"><button>News feed</button></a>
-        <a href="/openCreatePost"><button>Create post</button></a>
-        <a href="/openMyProfile"><button>My profile</button></a>
-    
+ 		<a href="/goHome"><button>Home <i class='bx bx-home-heart'></i></button></a>
+        <a href="/openCreatePost"><button>Create post <i class='bx bxs-image-add'></i></button></a>
+        <a href="/openMyProfile"><button>My profile <i class='bx bxs-user-circle' ></i></button></a>
+    	<button><span th:text="${session.username}"></span></button>
+    	<a href="/logout">LOGOUT</a>
+        
     </nav>
 
 
 <div>
 <span th:each="post:${allPosts}">
-<div class="post-header">
-                    <div class="profile-pic">
-                        <img th:if="${post.user.photoBase64}" 
-                             th:src="'data:image/jpeg;base64,' + ${post.user.photoBase64}" 
-                             alt="User Photo" />
-                    </div>
-                    <span class="username" th:text="${post.user.username}">Unknown</span>
-                </div>
+	<div class="container">
+    <div class="profile">
+        <div class="profile-header">
+            <div class="profile-pic">
+             
+                <img th:if="${post.user.photoBase64}" 
+                     th:src="'data:image/jpeg;base64,' + ${post.user.photoBase64}" 
+                     alt="User Photo" />
+              
+            </div>
+            <span class="username" th:text="${post.user.username}">Username</span>
+        </div>
+    </div>
+<hr>
+    <div class="post">
+       
+        <img th:if="${post.photoBase64}" th:src="'data:image/jpeg;base64,' + ${post.photoBase64}" alt="Profile photo" />
 
-<p><strong>Profile</strong>
-<img th:if="${post.photoBase64}"
-		th:src="'data:image/jpeg;base64,' + ${post.photoBase64}"
-		alt="Profile photo"/>
-		</p>
-		
-		<p><strong>Caption:</strong><span th:text="${post.caption}"></span></p>
-		<p><strong>Likes:</strong>
-		<span th:text="${post.likes}" ></span></p>
-		
-		 <form action="/likePost" method="post">
-                    <input type="hidden" name="id" th:value="${post.id}">
-                    <input type="submit" value="LIKE POST">
-                </form>
-		
-		  <form action="/addComment" method="post" class="comment-form">
-                    <input type="hidden" name="id" th:value="${post.id}">
-                    <textarea name="comment" placeholder="Add a comment..." required></textarea>
-                    <input type="submit" value="Comment">
-                </form>
-		
-		<div class="comments-section">
-                    <h4>Comments:</h4>
-                    <ul>
-                        <li th:each="comment : ${post.comments}">
-                            <span th:text="${comment}"></span>
-                        </li>
-                    </ul>
-                </div>
-                <hr/>
-		</div>
+        <p class="post-caption"><strong>Post caption:</strong> <span th:text="${post.caption}">This is a sample caption</span></p>
+        <p class="likes"><strong>Likes:</strong> <span th:text="${post.likes}">100</span></p>
+
+        <form action="/likePost" method="post" class="like-post">
+            <input type="hidden" name="id" th:value="${post.id}">
+            <input type="submit" value="LIKE POST" class="like-btn">
+        </form>
+
+        <form action="/addComment" method="post" class="comment-form">
+            <input type="hidden" name="id" th:value="${post.id}">
+            <textarea name="comment" placeholder="Add a comment..." required></textarea>
+            <input type="submit" value="Comment" class="comment-btn">
+        </form>
+
+        <div class="comments-section">
+            <h4>Comments:</h4>
+            <ul>
+                <li th:each="comment : ${post.comments}">
+                    <span th:text="${comment}"></span>
+                </li>
+            </ul>
+        </div>
+        <hr />
+    </div>
+</div>
+
 </body>
 </html>

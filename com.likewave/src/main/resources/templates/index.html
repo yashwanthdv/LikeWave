@@ -81,6 +81,23 @@ form {
     background-color: #008585; /* Changed to #008585 */
 }
 
+
+a button{
+ width: 100%;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #008585; /* Changed to #c7522a */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+a button:hover{
+background-color: #c7522a;
+}
+
 a {
     color: #c7522a; /* Changed to #c7522a */
     text-decoration: none;
@@ -162,15 +179,29 @@ hr {
                     <input type="submit" value="LOGIN">
                 </div>
                 <br>
-                <a href="">Forgot Password..?</a>
+                <a href="#">Forgot Password..?</a>
                 <hr>
                
                 <a href="/openSignUp">Create new account</a>
                          
             </form>
-             <div class="popup-message" >
-                <p th:text="${message}"></p>
+            
+             <div class="popup-message" id="popup-message">
+                <p th:text="${message}" ></p>
             </div>
+            
+            <script>
+    
+    window.onload = function() {
+        var popup = document.getElementById("popup-message");
+
+        if (popup) {
+            setTimeout(function() {
+                popup.style.display = 'none';  
+            }, 2000);
+        }
+    };
+</script>
         </div>
 
        

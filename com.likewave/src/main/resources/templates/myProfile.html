@@ -3,6 +3,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>My Profile</title>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 <style>
 body {
     margin: 0;
@@ -29,7 +31,7 @@ nav button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -37,22 +39,34 @@ nav button:hover {
     background-color: #e5c185;
 }
 
+.edit{
+	margin-left:85%;
+}
+
+.edit button{
+background-color: #008585;
+    color: #fbf2c4;
+    padding: 10px 15px;
+    margin-top: 90px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+ 
+}
 
 .profile-header {
     margin-top: 80px; /* Offset the top for fixed navbar */
     text-align: center;
 }
 
-.cover-photo {
-    background-color: #e5c185; /* Beige color for cover photo placeholder */
-    height: 200px;
-    margin-bottom: 20px;
-}
+
 
 .profile-picture img {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     border: 5px solid #74a892; /* Green border around profile pic */
 }
@@ -114,17 +128,18 @@ nav button:hover {
 <body>
     <!-- Navigation bar -->
     <nav>
-        <a href="/goHome"> <button>News feed</button></a>
-        <a href="/openCreatePost"><button>Create post</button></a>
-        <a href="/openMyProfile"><button>My profile</button></a>
-        <a href="/openEditProfile"><button>Edit profile</button> </a>
+ 		<a href="/goHome"><button>Home <i class='bx bx-home-heart'></i></button></a>
+        <a href="/openCreatePost"><button>Create post <i class='bx bxs-image-add'></i></button></a>
+        <a href="/openMyProfile"><button>My profile <i class='bx bxs-user-circle' ></i></button></a>
+    	<button><span th:text="${session.username}"></span></button>
+        
     </nav>
+    <div class="edit">
+    <a href="/openEditProfile"><button>Edit profile <i class='bx bxs-edit' ></i></button> </a>
+    </div>
 
     <div class="profile-header">
-        <!-- Cover Photo (optional, but to use space effectively) -->
-        <div class="cover-photo">
-            <!-- If you decide to add a cover photo feature -->
-        </div>
+       
 
         <!-- Profile Picture -->
         <div class="profile-picture">
@@ -156,6 +171,16 @@ nav button:hover {
                 <p><i class="fab fa-github"></i> <a th:href="${user.gitHub}" target="_blank">GitHub</a></p>
             </div>
         </div>
+        
+        <span th:each="post : ${myPosts}">
+            <div class="post-card">
+                
+                    <a >
+              <img th:if="${post.photoBase64}" 
+                             th:src="'data:image/jpeg;base64,' + ${post.photoBase64}" 
+                             alt="User Photo" />
+                             </a>
+                    </div>
     </div>
 </body>
 </html>

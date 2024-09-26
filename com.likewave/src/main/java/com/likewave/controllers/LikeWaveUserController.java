@@ -51,12 +51,17 @@ public class LikeWaveUserController {
 				@RequestParam String password,
 				Model model,
 				HttpSession session) {
+			if(username.isEmpty()||password.isEmpty()){
+				model.addAttribute("message","No credentials entered");
+				return "index";
+			}
 			boolean status=service.validateUser(username,password);
+			
+			
 			if(status==true) {
 				List<LikeWavePost> allPosts = postService.fetchAllPosts();
 				session.setAttribute("username", username);
 				model.addAttribute("session",session);
-				
 				model.addAttribute("allPosts", allPosts);
 				
 				return "home";
@@ -66,6 +71,10 @@ public class LikeWaveUserController {
 				return "index";
 			}
 		}
+			 
+				
+			 
+			
 		
 		@PostMapping("/updateProfile")
 		public String updateProfile(
