@@ -3,96 +3,50 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>My Profile</title>
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 <style>
- @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100..900&family=Caveat:wght@400..700&family=Cinzel:wght@400..900&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
-
 body {
     background-color: #fbf2c4;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
-nav {
-    background-color: #c7522a;
-    padding: 10px;
-    height:60px;
-    display: flex;
-    padding-left:20px;
-    padding-right:20px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav h2 {
-    color: #fbf2c4;
-    font-family:"Caveat", cursive;
-    margin: 0;
-}
-
-nav a {
-    text-decoration: none;
-}
-
-nav button {
-    background-color: #008585;
-    color: #fbf2c4;
-    border: none;
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 22px;
-    font-weight:bold;
-    transition: background-color 0.3s;
-}
-
-nav button:hover {
-    background-color: #e5c185;
-    color:#008585;
-}
-
-.edit {
+h2 {
     text-align: center;
-    margin: 20px 0;
-}
-
-.edit button {
-    background-color: #008585;
-    color: #fbf2c4;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-        font-size: 22px;
-    font-weight:bold;
-    
-    transition: background-color 0.3s;
-}
-
-.edit button:hover {
-    background-color: #c7522a;
+    color: #c7522a;
 }
 
 .profile-header {
     text-align: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
+}
+
+.cover-photo {
+    background-color: #e5c185;
+    height: 150px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.profile-picture {
+    margin-top: -80px; /* Adjust to overlap cover photo */
 }
 
 .profile-picture img {
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border: 5px solid #74a892;
+    border: 4px solid #fbf2c4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .username h1 {
     color: #008585;
     margin: 10px 0;
 }
+
 
 .profile-content {
     width: 60%;
@@ -162,26 +116,26 @@ hr {
     height: 100%;
     object-fit: cover;
 }
+
+
 </style>
 </head>
 <body>
-    <nav>
-    <h2>LIKEWAVE</h2>
- 		<a href="/goHome"><button>Home <i class='bx bx-home-heart'></i></button></a>
-        <a href="/openCreatePost"><button>Create post <i class='bx bxs-image-add'></i></button></a>
-        <a href="/openMyProfile"><button>My profile <i class='bx bxs-user-circle' ></i></button></a>
-        <button><span th:text="${session.username}"></span></button>
-    </nav>
-  
+	<h2>PROFILE DETAILS</h2>
+	 <div class="profile-header">
+        <!-- Cover Photo (optional, but to use space effectively) -->
+        <div class="cover-photo">
+            <!-- If you decide to add a cover photo feature -->
+        </div>
 
-    <div class="profile-header">
-       
+        <!-- Profile Picture -->
         <div class="profile-picture">
             <img th:if="${user.photoBase64}" 
                  th:src="'data:image/jpeg;base64,' + ${user.photoBase64}" 
                  alt="Profile Photo" />
         </div>
 
+        <!-- Username -->
         <div class="username">
             <h1 th:text="${user.username}"></h1>
         </div>
@@ -203,20 +157,17 @@ hr {
                 <p><i class="fab fa-linkedin"></i> <a th:href="${user.linkedIn}" target="_blank">LinkedIn</a></p>
                 <p><i class="fab fa-github"></i> <a th:href="${user.gitHub}" target="_blank">GitHub</a></p>
             </div>
-            
-              <div class="edit">
-    <a href="/openEditProfile"><button>Edit profile <i class="fas fa-edit"></i></button> </a>
-    </div>
         </div>
-        <hr>
-        <div class="post-display">
         <span th:each="post : ${myPosts}">
             <div class="post-card">
+                
+                    <a >
               <img th:if="${post.photoBase64}" 
                              th:src="'data:image/jpeg;base64,' + ${post.photoBase64}" 
                              alt="User Photo" />
+                             </a>
                     </div>
-          </div>
     </div>
+
 </body>
 </html>

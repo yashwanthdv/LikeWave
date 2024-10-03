@@ -3,6 +3,7 @@ package com.likewave.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.likewave.entities.LikeWaveUser;
 import com.likewave.repositories.LikeWaveUserRepository;
 
@@ -47,5 +48,16 @@ public class LikeWaveUserServiceImplementation implements LikeWaveUserService{
 	@Override
 	public void updateUser(LikeWaveUser user) {
 		repo.save(user);
+	}
+
+	@Override
+	public boolean resetUserPassword(String username, String newPassword) {
+		LikeWaveUser user = repo.findByUsername(username);
+	    if (user != null) {
+	        user.setPassword(newPassword); // Make sure to hash the password before saving it!
+	        repo.save(user);
+	        return true;
+	    }
+	    return false;
 	}
 }

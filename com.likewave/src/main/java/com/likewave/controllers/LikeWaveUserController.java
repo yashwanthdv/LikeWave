@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -113,5 +114,25 @@ public class LikeWaveUserController {
 			
 			return "myProfile";
 		}
+		
+		@GetMapping("/forgotPassword")
+		public String showForgotPasswordForm() {
+		    return "forgotPassword"; // This will be the name of your view for the forgot password form
+		}
+		
+		
+		@PostMapping("/resetPassword")
+		public String resetPassword(@RequestParam String username, @RequestParam String newPassword, Model model) {
+		    boolean status = service.resetUserPassword(username, newPassword);
+		    if (status) {
+		        model.addAttribute("message", "Password reset successfully!");
+		    } else {
+		        model.addAttribute("error", "Failed to reset password. User may not exist.");
+		        return "forgotPassword";
+		    }
+		    return "index"; // Redirect to the index or wherever you'd like after resetting
+		}
+		
+		
 
 }

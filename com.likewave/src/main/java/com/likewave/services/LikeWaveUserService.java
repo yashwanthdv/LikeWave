@@ -14,6 +14,8 @@ public interface LikeWaveUserService {
 
 	void updateUser(LikeWaveUser user);
 
+	boolean resetUserPassword(String username, String newPassword);
+
 	
 
 	

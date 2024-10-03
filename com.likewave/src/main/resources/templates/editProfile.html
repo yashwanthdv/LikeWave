@@ -11,20 +11,12 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.navbar {
-    background-color: #c7522a; /* Reddish-orange background for the navbar */
-    padding: 15px;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.navbar h2 {
-    color: #fbf2c4; /* Light cream color for the text */
-    margin: 0;
+h2 {
+    color: #c7522a;/* Light cream color for the text */
+    text-align:center;
     font-size: 24px;
+    margin-top:30px;
+    font-weight:bold;
 }
 
 form {
@@ -33,7 +25,7 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 50%;
-    margin: 120px auto 0; /* Center the form and give space for the navbar */
+    margin-left:25%;
     box-sizing: border-box;
 }
 
@@ -83,7 +75,7 @@ hr {
 </style>
 </head>
 <body>
-	<h2> Edit Profile..</h2>
+	<h2> EDIT PROFILE</h2>
 	<form action="/updateProfile" method="post" enctype="multipart/form-data">
 			<label>DOB:</label>
 			<input type="date" name="dob">

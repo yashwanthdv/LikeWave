@@ -4,22 +4,27 @@
 		<meta charset="ISO-8859-1">
 		<title>LikeWave</title>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <style>
+   <style>
+   @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100..900&family=Caveat:wght@400..700&family=Cinzel:wght@400..900&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
 body {
     margin: 0;
     padding: 0;
-    background-color: #fbf2c4; /* Changed to #fbf2c4 */
+    background-color: #fbf2c4; /* Background color from palette */
 }
 
+
+
 .navbar {
-    background-color: #c7522a; /* Changed to #c7522a */
+    background-color: #c7522a; /* Navbar background color */
     padding: 15px;
     text-align: center;
 }
 
 .navbar h1 {
-    color: #fbf2c4; /* Changed to #fbf2c4 */
+    color: #fbf2c4; /* Navbar text color */
     margin: 0;
+    font-family:"Caveat", cursive;
+  
 }
 
 .description {
@@ -31,11 +36,11 @@ body {
 }
 
 .description h1 {
-    color: #008585; /* Changed to #008585 */
+    color: #008585; /* Text color */
 }
 
 .description h3 {
-    color: #008585; /* Changed to #008585 */
+    color: #008585; /* Subheading text color */
     font-size: 20px;
     line-height: 26px;
 }
@@ -49,10 +54,31 @@ body {
 }
 
 form {
-    background-color: #e5c185; /* Changed to #e5c185 */
+    background-color: #e5c185; /* Form background color */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    display: block;
+    width: max-content; /* Adjusted width */
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #008585; /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-align: center; /* Center text */
+    text-decoration: none; 
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.button:hover {
+    background-color: #c7522a; /* Hover effect color */
+    text-decoration: none;
 }
 
 .text-box1 input, .text-box2 input {
@@ -60,7 +86,7 @@ form {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #74a892; /* Changed to #74a892 */
+    border: 1px solid #74a892; /* Input border color */
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -70,7 +96,7 @@ form {
     padding: 8px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #c7522a; /* Changed to #c7522a */
+    background-color: #c7522a; /* Submit button background color */
     color: white;
     border: none;
     border-radius: 4px;
@@ -78,31 +104,30 @@ form {
 }
 
 .btn input:hover {
-    background-color: #008585; /* Changed to #008585 */
+    background-color: #008585; /* Hover color */
 }
 
-
-a button{
- width: 100%;
+a button {
+    width: 100%;
     padding: 8px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #008585; /* Changed to #c7522a */
+    background-color: #008585; /* Button background color */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-a button:hover{
-background-color: #c7522a;
+a button:hover {
+    background-color: #c7522a; /* Hover color */
 }
 
 a {
-    color: #c7522a; /* Changed to #c7522a */
+    color: #c7522a; /* Link text color */
     text-decoration: none;
     font-size: 20px;
-    text-align: center;
+    text-align: left;
     display: block;
 }
 
@@ -114,7 +139,7 @@ hr {
     margin-top: 20px;
     margin-bottom: 20px;
     height: 1.5px;
-    background-color: #e5c185; /* Changed to #e5c185 */
+    background-color: #e5c185; /* Horizontal rule color */
 }
 
 .text-box1 i, .text-box2 i {
@@ -131,7 +156,7 @@ hr {
 }
 
 .create input[type="submit"] {
-    background-color: #008585; /* Changed to #008585 */
+    background-color: #008585; /* Submit button background color */
     padding: 6px;
     font-size: 18px;
     border-radius: 4px;
@@ -141,7 +166,7 @@ hr {
 
 .popup-message {
     display: block;
-    background-color: #c7522a; /* Changed to #c7522a */
+    background-color: #c7522a; /* Popup message background */
     color: white;
     margin-top: -390px;
     height: fit-content;
@@ -149,7 +174,6 @@ hr {
     text-align: center;
     font-size: 20px;
 }
-
 
 
         </style>
@@ -179,18 +203,23 @@ hr {
                     <input type="submit" value="LOGIN">
                 </div>
                 <br>
-                <a href="#">Forgot Password..?</a>
+                <a href="/forgotPassword">Forgot Password?</a>
                 <hr>
                
-                <a href="/openSignUp">Create new account</a>
-                         
+               <div>
+                <a href="/openSignUp" class="button">Create new account</a>
+                   </div>      
             </form>
             
              <div class="popup-message" id="popup-message">
                 <p th:text="${message}" ></p>
             </div>
-            
-            <script>
+        </div>
+
+       
+	</body>
+	
+	   <script>
     
     window.onload = function() {
         var popup = document.getElementById("popup-message");
@@ -202,8 +231,4 @@ hr {
         }
     };
 </script>
-        </div>
-
-       
-	</body>
 </html>

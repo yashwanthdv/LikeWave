@@ -5,51 +5,102 @@
 <title>Home page</title>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <style>
+ @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100..900&family=Caveat:wght@400..700&family=Cinzel:wght@400..900&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
+
 body {
-    margin: 0;
-    padding: 0;
     background-color: #fbf2c4;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 nav {
     background-color: #c7522a;
+    padding: 10px;
+    height:60px;
     display: flex;
-    justify-content: space-around;
-    padding: 15px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    padding-left:20px;
+    padding-right:20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    color: #fbf2c4;
+    font-family:"Caveat", cursive;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
 }
 
 nav button {
     background-color: #008585;
     color: #fbf2c4;
-    padding: 10px 15px;
-    margin: 0 10px;
     border: none;
     border-radius: 4px;
+    padding: 10px;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-   
+    font-size: 22px;
+    font-weight:bold;
+    transition: background-color 0.3s;
 }
 
 nav button:hover {
     background-color: #e5c185;
+    color:#008585;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropbtn {
+    background-color: #e5c185;
+    color: #008585;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #e5c185;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #008585;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #c7522a;
+    color: white;
+}
 
 .container {
-    width: 50%;
+    width: 42%;
     margin: 0 auto;
     background-color: #e5c185;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 85px;
+    margin-top: 20px;
+    marging-bottom:-10px;
     text-align: center;
     box-sizing: border-box;
 }
@@ -67,6 +118,10 @@ nav button:hover {
     border-radius: 50%;
     border: 3px solid #74a892; /* Muted green */
     margin-right: 20px;
+}
+
+.profile-header a{
+text-decoration:none;
 }
 
 .username {
@@ -168,12 +223,19 @@ hr {
 </head>
 <body>
  <nav>
+ <h2>LIKEWAVE</h2>
  		<a href="/goHome"><button>Home <i class='bx bx-home-heart'></i></button></a>
         <a href="/openCreatePost"><button>Create post <i class='bx bxs-image-add'></i></button></a>
         <a href="/openMyProfile"><button>My profile <i class='bx bxs-user-circle' ></i></button></a>
-    	<button><span th:text="${session.username}"></span></button>
-    	<a href="/logout">LOGOUT</a>
         
+        <div class="dropdown">
+  <button class="dropbtn"><span th:text="${session.username}"></span></button>
+  <div class="dropdown-content">
+   <a href="/logout">LOGOUT</a>
+  </div>
+</div>
+     
+    	
     </nav>
 
 
@@ -182,14 +244,17 @@ hr {
 	<div class="container">
     <div class="profile">
         <div class="profile-header">
-            <div class="profile-pic">
-             
-                <img th:if="${post.user.photoBase64}" 
+            
+             <div class="profile-pic">
+               
+              <a th:href="@{'/visitProfile?profileName=' + ${post.user.username}}">
+                     <img th:if="${post.user.photoBase64}" 
                      th:src="'data:image/jpeg;base64,' + ${post.user.photoBase64}" 
                      alt="User Photo" />
               
             </div>
             <span class="username" th:text="${post.user.username}">Username</span>
+            </a>
         </div>
     </div>
 <hr>
