@@ -58,10 +58,11 @@ public class LikeWavePostController {
 					
 			
 		List<LikeWavePost> allPosts=service.fetchAllPosts();
-		model.addAttribute("allposts",allPosts);
+		model.addAttribute("allPosts",allPosts);
 		return "home";
 	
 }
+	
 	
 	@PostMapping("/likePost")
 	public String likePost(@RequestParam Long id, Model model) {
@@ -72,6 +73,7 @@ public class LikeWavePostController {
 		model.addAttribute("allPosts",allPosts);
 		return "home";
 	}
+	
 	
 	@PostMapping("/addComment")
 	public String addComment(@RequestParam Long id, 

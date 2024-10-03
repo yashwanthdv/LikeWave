@@ -73,8 +73,8 @@ public class NavigationController {
 	@GetMapping("/profile")
     public String getUserProfile(@PathVariable("username") String username, Model model) {
         LikeWaveUser user = service.getUser(username);
-        model.addAttribute("user", user);  // Add the user object to the model
-        return "home";  // Return the profile.html template
+        model.addAttribute("user", user);  
+        return "home";  
     }
 	
 	

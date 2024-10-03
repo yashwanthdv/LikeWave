@@ -1,0 +1,212 @@
+	@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100..900&family=Caveat:wght@400..700&family=Cinzel:wght@400..900&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
+	
+	body {
+	    background-color: #fbf2c4;
+	    font-family: Arial, sans-serif;
+	    margin: 0;
+	    padding: 0;
+	}
+	
+	nav {
+	    background-color: #c7522a;
+	    padding: 10px;
+	    height:60px;
+	    display: flex;
+	    padding-left:20px;
+	    padding-right:20px;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	
+	nav h2 {
+	    color: #fbf2c4;
+	    font-family:"Caveat", cursive;
+	    margin: 0;
+	}
+	
+	nav a {
+	    text-decoration: none;
+	}
+	
+	nav button {
+	    background-color: #008585;
+	    color: #fbf2c4;
+	    border: none;
+	    border-radius: 4px;
+	    padding: 10px;
+	    cursor: pointer;
+	    font-size: 22px;
+	    font-weight:bold;
+	    transition: background-color 0.3s;
+	}
+	
+	nav button:hover {
+	    background-color: #e5c185;
+	    color:#008585;
+	}
+	
+	.dropdown {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.dropbtn {
+	    background-color: #e5c185;
+	    color: #008585;
+	    border: none;
+	    padding: 10px;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+	
+	.dropdown-content {
+	    display: none;
+	    position: absolute;
+	    background-color: #e5c185;
+	    min-width: 160px;
+	    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+	    z-index: 1;
+	    border-radius: 4px;
+	}
+	
+	.dropdown:hover .dropdown-content {
+	    display: block;
+	}
+	
+	.dropdown-content a {
+	    color: #008585;
+	    padding: 12px 16px;
+	    text-decoration: none;
+	    display: block;
+	}
+	
+	.dropdown-content a:hover {
+	    background-color: #c7522a;
+	    color: white;
+	}
+	
+	.container {
+	    width: 42%;
+	    margin: 0 auto;
+	    background-color: #e5c185;
+	    padding: 20px;
+	    border-radius: 8px;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	    margin-top: 20px;
+	    marging-bottom:-10px;
+	    text-align: center;
+	    box-sizing: border-box;
+	}
+	
+	.profile-header {
+	    display: flex;
+	    align-items: center;
+	    margin-bottom: 20px;
+	    height:80px;
+	}
+	
+	.profile-pic img {
+	    width: 70px;
+	    height: 70px;
+	    border-radius: 50%;
+	    border: 3px solid #74a892; /* Muted green */
+	    margin-right: 20px;
+	}
+	
+	.profile-header a{
+	text-decoration:none;
+	}
+	
+	.username {
+	    font-size: 22px;
+	    color: #008585; /* Teal */
+	    font-weight: bold;
+	    margin-top:-25px;
+	}
+	
+	.post img {
+	    width: 100%;
+	    height: auto;
+	    border-radius: 10px;
+	    margin-bottom: 10px;
+	}
+	
+	.post-caption, .likes{
+	text-align:left;
+	margin-top:-5px;
+	}
+	
+	.like-post{
+	margin-top:-40px;
+	margin-bottom:10px;
+	}
+	
+	.like-btn{
+	    background-color: #c7522a; 
+	    color: white;
+	    padding: 10px;
+	    width: 50%;
+	    border: none;
+	    border-radius: 5px;
+	    font-size: 16px;
+	    cursor: pointer;
+	    
+	}
+	
+	
+	 .comment-btn {
+	    background-color: #c7522a; /* Reddish-orange */
+	    color: white;
+	    padding: 10px;
+	    width: 100%;
+	    border: none;
+	    border-radius: 5px;
+	    font-size: 16px;
+	    cursor: pointer;
+	}
+	
+	
+	
+	.like-btn:hover, .comment-btn:hover {
+	    background-color: #008585; /* Teal */
+	}
+	
+	textarea {
+	    width: 90%;
+	    padding: 10px;
+	    border: 1px solid #74a892; /* Muted green */
+	    border-radius: 5px;
+	    margin-bottom: 10px;
+	    font-family: inherit;
+	}
+	
+	.comments-section {
+	    margin-top: 20px;
+	}
+	
+	.comments-section h4 {
+	text-align:left;
+	    color: #008585; 
+	    margin-bottom: 10px;
+	}
+	
+	.comments-section ul {
+	text-align:left;
+	    list-style: none;
+	    padding: 0;
+	}
+	
+	.comments-section li {
+	    background-color: #e5c185; 
+	    padding: 2px;
+	    margin-bottom: 10px;
+	    border-radius: 5px;
+	    
+	}
+	
+	hr {
+	    border: none;
+	    height: 2px;
+	    background-color: #74a892; /* Muted green */
+	    margin-top: 20px;
+	}

@@ -68,7 +68,7 @@ public class LikeWaveUserController {
 				return "home";
 			}
 			else {
-				model.addAttribute("message","Invalid username or password..!");
+				model.addAttribute("message","Invalid password..!");
 				return "index";
 			}
 		}
@@ -105,7 +105,7 @@ public class LikeWaveUserController {
 			try {						
 				user.setProfilePic(photo.getBytes());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			service.updateUser(user);
@@ -117,7 +117,7 @@ public class LikeWaveUserController {
 		
 		@GetMapping("/forgotPassword")
 		public String showForgotPasswordForm() {
-		    return "forgotPassword"; // This will be the name of your view for the forgot password form
+		    return "forgotPassword"; 
 		}
 		
 		
@@ -130,7 +130,7 @@ public class LikeWaveUserController {
 		        model.addAttribute("error", "Failed to reset password. User may not exist.");
 		        return "forgotPassword";
 		    }
-		    return "index"; // Redirect to the index or wherever you'd like after resetting
+		    return "index"; 
 		}
 		
 		

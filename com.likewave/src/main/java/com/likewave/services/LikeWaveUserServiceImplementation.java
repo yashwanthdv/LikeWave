@@ -54,7 +54,7 @@ public class LikeWaveUserServiceImplementation implements LikeWaveUserService{
 	public boolean resetUserPassword(String username, String newPassword) {
 		LikeWaveUser user = repo.findByUsername(username);
 	    if (user != null) {
-	        user.setPassword(newPassword); // Make sure to hash the password before saving it!
+	        user.setPassword(newPassword); 
 	        repo.save(user);
 	        return true;
 	    }

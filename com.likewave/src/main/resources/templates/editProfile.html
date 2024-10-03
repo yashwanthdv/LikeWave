@@ -1,118 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Edit Profile</title>
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #fbf2c4; /* Light cream background */
-    font-family: Arial, sans-serif;
-}
-
-h2 {
-    color: #c7522a;/* Light cream color for the text */
-    text-align:center;
-    font-size: 24px;
-    margin-top:30px;
-    font-weight:bold;
-}
-
-form {
-    background-color: #e5c185; /* Light tan background for the form */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    margin-left:25%;
-    box-sizing: border-box;
-}
-
-label {
-    color: #008585; /* Teal color for the form labels */
-    font-weight: bold;
-}
-
-input[type="text"], input[type="date"], input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #74a892; /* Muted green for the input border */
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type="radio"] {
-    margin-left: 10px;
-    margin-right: 5px;
-}
-
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #c7522a; /* Reddish-orange background for the button */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-input[type="submit"]:hover {
-    background-color: #008585; /* Teal color on hover */
-}
-
-hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 1.5px;
-    background-color: #e5c185; /* Light tan color for the horizontal line */
-}
-
-</style>
-</head>
-<body>
-	<h2> EDIT PROFILE</h2>
-	<form action="/updateProfile" method="post" enctype="multipart/form-data">
-			<label>DOB:</label>
-			<input type="date" name="dob">
-			<br><br>
-			
-			<label>Gender:</label>
-	<label>M</label><input type="radio" name="gender" value="M">
-	<label>F</label><input type="radio" name="gender" value="F">
-	<label>O</label><input type="radio" name="gender" value="O">
-	
-	<br><br>
-			
-			<label>CITY:</label>
-			<input type="text" name="city">
-			<br><br>
-			
-			<label>BIO:</label>
-			<input type="text" name="bio">
-			<br><br>
-			
-			<label>COLLEGE:</label>
-			<input type="text" name="college">
-			<br><br>
-			
-			<label>LINKED IN:</label>
-			<input type="text" name="linkedIn">
-			<br><br>
-			
-			<label>GIT HUB:</label>
-			<input type="text" name="gitHub">
-			<br><br>
-			
-			<input type="file" name="photo" accept="image/*">
-			
-			
-			<input type="submit" value="UPDATE PROFILE">
-			<hr>
-
-</body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Edit Profile</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/editProfile.css}">
+	</head>
+	<body>
+		<h2> EDIT PROFILE</h2>
+		<form action="/updateProfile" method="post" enctype="multipart/form-data">
+				<label>DOB:</label>
+				<input type="date" name="dob">
+				<br><br>
+				
+				<label>Gender:</label>
+				<label>M</label><input type="radio" name="gender" value="M">
+				<label>F</label><input type="radio" name="gender" value="F">
+				<label>O</label><input type="radio" name="gender" value="O">
+				<br><br>
+				
+				<label>CITY:</label>
+				<input type="text" name="city">
+				<br><br>
+				
+				<label>BIO:</label>
+				<input type="text" name="bio">
+				<br><br>
+				
+				<label>COLLEGE:</label>
+				<input type="text" name="college">
+				<br><br>
+				
+				<label>LINKED IN:</label>
+				<input type="text" name="linkedIn">
+				<br><br>
+				
+				<label>GIT HUB:</label>
+				<input type="text" name="gitHub">
+				<br><br>
+				
+				<input type="file" name="photo" accept="image/*">
+				
+				
+				<input type="submit" value="UPDATE PROFILE">
+				<hr>
+		</form>
+	</body>
 </html>

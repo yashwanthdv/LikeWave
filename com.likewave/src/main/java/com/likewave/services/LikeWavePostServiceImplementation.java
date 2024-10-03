@@ -38,7 +38,6 @@ public class LikeWavePostServiceImplementation implements LikeWavePostService {
 
 	@Override
 	public LikeWavePost getLikeWavePost(Long id) {
-		// TODO Auto-generated method stub
 		return repo.findById(id).get();
 	}
 }
