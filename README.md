@@ -1,4 +1,5 @@
 Likewave - Social Media Application
+
 Likewave is a Spring Boot-based social media application where users can share posts, comment, like posts, and manage their profiles. It provides a simple, intuitive interface for users to interact with each other, similar to popular social media platforms. The application includes user authentication features like login, logout, and profile updates.
 ->Features
 
